@@ -1,0 +1,299 @@
+/* ===== VARIABLES Y RESET ===== */
+:root {
+    --color-lila-primary: #b19cd9;
+    --color-lila-dark: #9370db;
+    --color-lila-light: #dda0dd;
+    --color-purple: #8b4fdb;
+    --color-orange: #ff8c42;
+    --color-white: #ffffff;
+    --color-footer: rgba(255, 255, 255, 0.7);
+    --font-main: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== ESTILOS GENERALES ===== */
+body {
+    font-family: var(--font-main);
+    background: linear-gradient(135deg, #e6d5f5 0%, #f0e6fa 50%, #dcc4f0 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ===== CORAZONES FLOTANTES ===== */
+/* Los corazones flotan suavemente en el fondo con animación CSS */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: float 15s infinite ease-in-out;
+}
+
+/* Distribución de corazones en diferentes posiciones */
+.heart:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 12s; }
+.heart:nth-child(2) { left: 25%; animation-delay: 2s; animation-duration: 14s; }
+.heart:nth-child(3) { left: 40%; animation-delay: 4s; animation-duration: 16s; }
+.heart:nth-child(4) { left: 55%; animation-delay: 1s; animation-duration: 13s; }
+.heart:nth-child(5) { left: 70%; animation-delay: 3s; animation-duration: 15s; }
+.heart:nth-child(6) { left: 85%; animation-delay: 5s; animation-duration: 17s; }
+.heart:nth-child(7) { left: 15%; animation-delay: 6s; animation-duration: 14s; }
+.heart:nth-child(8) { left: 60%; animation-delay: 2.5s; animation-duration: 12s; }
+
+/* Animación de flotación: movimiento vertical suave */
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.3;
+    }
+    90% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ===== CANVAS DE CONFETI ===== */
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.content {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 3rem 2rem;
+    border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(147, 112, 219, 0.3);
+    max-width: 500px;
+    width: 100%;
+}
+
+/* ===== TEXTOS PRINCIPALES ===== */
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-lila-dark);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: var(--color-purple);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.name {
+    font-size: 1.8rem;
+    color: var(--color-orange);
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+/* ===== BOTONES ===== */
+.buttons-container {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    min-height: 120px;
+}
+
+.btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-family: var(--font-main);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn:focus {
+    outline: 3px solid var(--color-lila-dark);
+    outline-offset: 3px;
+}
+
+/* Botón SÍ: color lila destacado */
+.btn-yes {
+    background: linear-gradient(135deg, var(--color-lila-primary) 0%, var(--color-purple) 100%);
+    color: var(--color-white);
+}
+
+.btn-yes:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(147, 112, 219, 0.5);
+}
+
+.btn-yes:active {
+    transform: scale(1.05);
+}
+
+/* Botón NO: color más tenue, comportamiento evasivo */
+.btn-no {
+    background: linear-gradient(135deg, #f0b4d4 0%, #e091b5 100%);
+    color: var(--color-white);
+    position: fixed;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.btn-no:hover {
+    transform: scale(1.05);
+}
+
+/* ===== MENSAJE DE RESPUESTA ===== */
+.response-message {
+    display: none;
+    text-align: center;
+    animation: fadeInScale 0.8s ease forwards;
+}
+
+.response-message.show {
+    display: block;
+}
+
+.response-text {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--color-purple);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Animación de entrada del mensaje */
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animación de pulsación del mensaje */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.3);
+    color: var(--color-lila-dark);
+    font-size: 1rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .name {
+        font-size: 1.5rem;
+    }
+    
+    .content {
+        padding: 2rem 1.5rem;
+    }
+    
+    .btn {
+        padding: 0.9rem 2rem;
+        font-size: 1.1rem;
+    }
+    
+    .response-text {
+        font-size: 2.5rem;
+    }
+    
+    .heart {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.6rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .name {
+        font-size: 1.3rem;
+    }
+    
+    .btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+    }
+    
+    .buttons-container {
+        gap: 1rem;
+    }
+    
+    .response-text {
+        font-size: 2rem;
+    }
+}

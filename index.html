@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una pregunta especial 💜</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Corazones flotantes de fondo -->
+    <div class="hearts-container" aria-hidden="true">
+        <div class="heart heart-purple">💜</div>
+        <div class="heart heart-orange">🧡</div>
+        <div class="heart heart-purple">💜</div>
+        <div class="heart heart-orange">🧡</div>
+        <div class="heart heart-purple">💜</div>
+        <div class="heart heart-orange">🧡</div>
+        <div class="heart heart-purple">💜</div>
+        <div class="heart heart-orange">🧡</div>
+    </div>
+
+    <!-- Canvas para confeti -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Contenedor principal -->
+    <main class="container" id="main-container">
+        <div class="content" id="content">
+            <h1 class="title">¿Quieres ser mi novia?</h1>
+            <p class="subtitle">(Otra vez)</p>
+            <p class="name">Mafecita 💜</p>
+            
+            <div class="buttons-container" id="buttons-container">
+                <button 
+                    id="yes-button" 
+                    class="btn btn-yes"
+                    aria-label="Sí, quiero ser tu novia"
+                    role="button"
+                >
+                    Sí 💜
+                </button>
+                <button 
+                    id="no-button" 
+                    class="btn btn-no"
+                    aria-label="No, no quiero ser tu novia"
+                    role="button"
+                >
+                    No 💔
+                </button>
+            </div>
+        </div>
+
+        <!-- Mensaje de respuesta (inicialmente oculto) -->
+        <div class="response-message" id="response-message">
+            <h1 class="response-text">Te amoooo 💜🧡</h1>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Con ♥️ Joshua</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
